@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
+use App\Models\Region;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+           CitySeeder::class,
+           RegionSeeder::class,
+            UserSeeder::class,
+            StatusSeeder::class,
+            TypeSeeder::class,
+            ProductSeeder::class,
+            ReferalSeeder::class,
+            DiscountSeeder::class
+        ]);
     }
 }
