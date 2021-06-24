@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+
+    //Har bir tovardan odamga qoladigan foiz miqdor
+    const PERCENT = 10;
+
+
     /**
      * The attributes that are mass assignable.
      *

@@ -16,7 +16,7 @@ class DiscountSeeder extends Seeder
     {
         Discount::query()->insert([
            'id' => 1,
-           'name' => "Yozgi ta'til munosabati bilan har bir tovarga 30% chegirma!!!",
+           'name' => "Yozgi ta'til munosabati bilan har bir tovarga 10% chegirma!!!",
            'type' => Discount::PERCENT,
            'value' => 10
         ]);

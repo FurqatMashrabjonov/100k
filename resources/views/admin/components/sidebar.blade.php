@@ -12,21 +12,21 @@
         <div class="sidebar__content" data-simplebar="data-simplebar">
             <nav class="sidebar__nav">
                 <ul class="sidebar__menu">
-                    <li class="sidebar__menu-item"><a class="sidebar__link <?php if (explode('.',Route::currentRouteName())[1] == 'dashboard') echo 'active'; else echo ''; ?>" href="{{url("admin/dashboard")}}"><span class="sidebar__link-icon">
+                    <li class="sidebar__menu-item"><a class="sidebar__link " href="{{url("admin/dashboard")}}"><span class="sidebar__link-icon">
                       <svg class="icon-icon-dashboard">
                         <use xlink:href="#icon-dashboard"></use>
                       </svg></span><span class="sidebar__link-text">Dashboard</span></a>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link <?php if (explode('.',Route::currentRouteName())[1] == 'products') echo 'active'; else echo ''; ?>" href="{{url("admin/products")}}" ><span class="sidebar__link-icon">
+                    <li class="sidebar__menu-item"><a class="sidebar__link " href="{{url("admin/products")}}" ><span class="sidebar__link-icon">
                       <svg class="icon-icon-cart">
                         <use xlink:href="#icon-cart"></use>
                       </svg></span><span class="sidebar__link-text">Products</span><span class="sidebar__link-arrow">
                      </span></a>
                     </li>
-                    <li class="sidebar__menu-item"><a class="sidebar__link" href="calendar.html" aria-expanded="false"><span class="sidebar__link-icon">
-                      <svg class="icon-icon-calendar">
-                        <use xlink:href="#icon-calendar"></use>
-                      </svg></span><span class="sidebar__link-text">Calendar</span></a>
+                    <li class="sidebar__menu-item"><a class="sidebar__link" href="{{url('admin/checkouts')}}" aria-expanded="false"><span class="sidebar__link-icon">
+                     <svg class="icon-icon-todo">
+                        <use xlink:href="#icon-todo"></use>
+                      </svg></span><span class="sidebar__link-text">Checkouts</span></a>
                     </li>
                     <li class="sidebar__menu-item"><a class="sidebar__link" href="mail.html" aria-expanded="false"><span class="sidebar__link-icon">
                       <svg class="icon-icon-email">

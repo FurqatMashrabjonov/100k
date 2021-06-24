@@ -52,3 +52,17 @@ function price_format($price){
 
     return $price . ' so\'m';
 }
+
+
+function status($model, $key){
+    $status = \App\Models\Status::query()
+        ->where("model", $model)
+        ->where('key', $key)
+        ->first();
+    return $status->id;
+}
+
+
+function discount(){
+
+}

@@ -503,6 +503,7 @@
 <script src="{{asset('assets/js/uikit.js')}}"></script>
 <script src="{{asset('assets/js/simplebar.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="{{asset("assets/js/jquery.mask.js")}}"></script>
 
 <script src="../../unpkg.com/ionicons%405.2.3/dist/ionicons.js"></script>
 @yield("scripts")

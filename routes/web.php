@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Auth\BeforeLogin;
 use App\Http\Controllers\Auth\UserItemsController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReferalController;
@@ -40,6 +41,9 @@ Route::group(['middleware' => 'guest'], function () {
 
 });
 
+
+Route::post("checkout", [CheckoutController::class, 'store'])->name("checkout.create");
+
 Route::get("product/{product}", [ProductController::class, 'productDetail']);
 Route::post("like", [ProductController::class, 'like'])->name("like");
 
@@ -53,6 +57,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         //Products
         Route::get("/products", [ProductsController::class, 'index']);
         Route::post("/products", [ProductsController::class, 'store'])->name('products');
+
+        //Checkout
+        Route::get("/checkouts", [\App\Http\Controllers\Admin\CheckoutController::class, 'index']);
+        Route::get("checkout_saled/{id}", [\App\Http\Controllers\Admin\CheckoutController::class, 'checkoutSaled']);
     });
 });
 

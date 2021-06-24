@@ -27,6 +27,7 @@ class ProductSeeder extends Seeder
                 'token' => Str::random(40),
                 'status_id' => 1,
                 'type_id' => 1,
+                'discount_id' => 1
 
             ]);
 

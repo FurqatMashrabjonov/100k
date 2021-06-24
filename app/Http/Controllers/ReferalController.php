@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Referal;
+use App\Models\Region;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,15 +27,14 @@ class ReferalController extends Controller
             ->where("token", $referal_token)
             ->with(['user', 'product'])
             ->first();
-
+        $regions = Region::all();
         if (!empty($referal) and $referal){
-            $product = Product::find($referal->product_id);
+            $product = Product::where("id", $referal->product_id)->with(['user', 'image', 'discount'])->first();
             $referal_user = $referal->user;
-            return view("product_single", compact('product', 'referal_user'));
+            return view("product_single", compact('product', 'referal_user', 'referal', 'regions'));
         }else{
             return view("404");
         }
-
     }
 
     /**

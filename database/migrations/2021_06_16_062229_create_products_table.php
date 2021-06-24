@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('token');
             $table->unsignedInteger('status_id');
             $table->unsignedInteger('type_id');
+            $table->unsignedInteger("discount_id");
             $table->unsignedInteger("count")->default(0);
             $table->timestamps();
 

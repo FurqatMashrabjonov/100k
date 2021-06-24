@@ -72,49 +72,62 @@
                 </div>
             </div>
             <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-
-                <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                    <div>
-                        <label for=""> First name</label>
-                        <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
-                    </div>
-                    <div>
-                        <label for=""> Last name</label>
-                        <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
-                    </div>
-                    <div class="col-span-2">
-                        <label for=""> Email</label>
-                        <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
-                    </div>
-                    <div class="col-span-2">
-                        <label for="about">About me</label>
-                        <textarea id="about" name="about" rows="3" class="shadow-none bg-gray-100"></textarea>
-                    </div>
-                    <div class="col-span-2">
-                        <label for=""> Location</label>
-                        <input type="text" placeholder="" class="shadow-none bg-gray-100">
-                    </div>
-                    <div>
-                        <label for=""> Working at</label>
-                        <input type="text" placeholder="" class="shadow-none bg-gray-100">
-                    </div>
-                    <div>
-                        <label for=""> Relationship </label>
-                        <select id="relationship" name="relationship" class="shadow-none bg-gray-100">
-                            <option value="0">None</option>
-                            <option value="1">Single</option>
-                            <option value="2">In a relationship</option>
-                            <option value="3">Married</option>
-                            <option value="4">Engaged</option>
-                        </select>
-                    </div>
+                <div style="padding: 50px">
+                    <p style="font-size: 40px;">Buyurtma berish</p><br>
+                    <p><strong>Mahsulot narxi</strong> : {{ price_format($product->price) }}</p>
+                    <p><strong>Tovarlar soni </strong>: {{$product->count}}</p>
+                    <p><strong>Chegirma turi </strong>: {{$product->discount->name}}</p>
                 </div>
+                <form action="{{route("checkout.create")}}" method="post">
+                    @csrf
 
-                <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                    <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel</button>
-                    <button type="button" class="button bg-blue-700"> Save</button>
-                </div>
+                    @if(isset($referal) and $referal)
+                        <input type="hidden" name="referal_id" value="{{$referal->id}}">
+                    @endif
 
+                    <div class="col-span-2">
+                        @if ($errors->any())
+                            <div style="color: #ff4f4a" class="alert alert-danger">
+                                <ol>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                        <div>
+                            <label for="">Name</label>
+                            <input type="text" name="name" class="shadow-none bg-gray-100">
+                        </div>
+                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                        <div>
+                            <label for=""> Phone</label>
+                            <input type="text" id="phone1" class="shadow-none bg-gray-100">
+                            <input type="hidden" name="phone" id="phone" style="display: none">
+                        </div>
+                        <div>
+                            <label for=""> Region </label>
+                            <select id="relationship" name="region_id" class="shadow-none bg-gray-100">
+                                @foreach($regions as $region)
+                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label for=""> Address </label>
+                            <input type="text" name="address" class="shadow-none bg-gray-100">
+                        </div>
+                        <div>
+                            <label for="about">Count</label>
+                            <input id="about" type="number" name="count" class="shadow-none bg-gray-100">
+                        </div>
+                    </div>
+                    <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                        <button type="Submit" class="button bg-blue-700">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -273,4 +286,19 @@
 
     {{--    </div>--}}
 
+@endsection
+
+@section("scripts")
+    <script>
+        $(document).ready(function ($) {
+            $("#phone1").mask("(99) 000 00 00");
+
+            $("#phone1").focusout(function () {
+                if ($("#phone1").val().length > 0)
+                    $("#phone").val($("#phone1").val().match(/\d/g).join(""))
+                console.log($("#phone").val())
+            })
+
+        });
+    </script>
 @endsection

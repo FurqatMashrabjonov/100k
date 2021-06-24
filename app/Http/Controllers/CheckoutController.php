@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkout;
+use App\Models\Discount;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -31,11 +33,43 @@ class CheckoutController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'product_id' => ['required', 'numeric'],
+            'phone' => ['required'],
+            'region_id' => ['required', 'numeric'],
+            'address' => ['required'],
+            'count' => ['required', 'numeric']
+        ]);
+        $checkout = new Checkout();
+        $checkout->name = $request->name;
+        $checkout->phone = phone_format($request->phone);
+        $checkout->region_id = $request->region_id;
+        $checkout->address = $request->address;
+        $checkout->count = $request->count;
+        $checkout->product_id = $request->product_id;
+        $checkout->status = Checkout::NOT_SALED;
+
+        $checkout->referal_id = (isset($request->referal_id) and $request->referal_id) ? $request->referal_id : null;
+        $product = Product::query()->find($checkout->product_id)->with(['discount'])->first();
+        if ($product->discount->type == Discount::PERCENT){
+            $amount =((int)$product->price - ((int)$product->price * (int)$product->discount->value) / 100) * (int)$checkout->count;
+        }else if ($product->discount->type == Discount::SUMM) {
+            $amount = ((int)$product->price - (int)$product->discount->value) * (int)$checkout->count;
+        }
+
+        if ($amount != null){
+            $checkout->amount = $amount;
+        }
+        if ($checkout->save()){
+            $product = Product::find($checkout->product_id);
+            return view("success_checkout", compact("checkout", 'product'));
+
+        }
     }
 
     /**

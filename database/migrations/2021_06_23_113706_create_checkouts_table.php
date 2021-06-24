@@ -18,9 +18,11 @@ class CreateCheckoutsTable extends Migration
             $table->unsignedInteger("region_id");
             $table->string("phone");
             $table->string("name");
+            $table->unsignedInteger("referal_id")->default(null)->nullable();
             $table->string("address");
             $table->unsignedInteger("count");
-            $table->unsignedInteger("discount_id");
+            $table->decimal("amount", 10, 0)->nullable()->default(null);
+            $table->unsignedInteger("product_id");
             $table->unsignedTinyInteger("status");
             $table->timestamps();
         });

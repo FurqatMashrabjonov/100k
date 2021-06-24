@@ -22,6 +22,8 @@
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="theme-color" content="#ffffff"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">--}}
+
 
 </head>
 
@@ -685,7 +687,7 @@
                                 <?php
 
                                 $types = \App\Models\Type::all();
-
+                                $discounts = \App\Models\Discount::all();
                                 ?>
                                 <div class="col-12 form-group form-group--lg">
                                     <label class="form-label">Category</label>
@@ -696,6 +698,22 @@
                                             </option>
                                             @foreach($types as $type)
                                                 <option value="{{$type->id}}">{{$type->name}}</option>
+                                            @endforeach
+                                        </select><span class="input-group__arrow">
+                          <svg class="icon-icon-keyboard-down">
+                            <use xlink:href="#icon-keyboard-down"></use>
+                          </svg></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 form-group form-group--lg">
+                                    <label class="form-label">Discount</label>
+                                    <div class="input-group input-group--append">
+                                        <select class="input js-input-select input--fluid" name="discount_id"
+                                                data-placeholder="">
+                                            <option selected="selected">Select discount
+                                            </option>
+                                            @foreach($discounts as $discount)
+                                                <option value="{{$discount->id}}">{{$discount->name}}</option>
                                             @endforeach
                                         </select><span class="input-group__arrow">
                           <svg class="icon-icon-keyboard-down">
@@ -715,6 +733,7 @@
                                     <input class="input" name="price" type="number" required>
                                 </div>
                             </div>
+
                             <div class="col-12 form-group form-group--lg">
                                 <label class="form-label">Product Images</label>
                                 <div class="image-upload">

@@ -39,6 +39,9 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function discount(){
+        return $this->belongsTo(Discount::class);
+    }
     public function getLikedAttribute()
     {
         if (auth()->check()) {

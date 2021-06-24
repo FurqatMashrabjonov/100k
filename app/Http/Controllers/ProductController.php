@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Product;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use MongoDB\Driver\Session;
 
@@ -17,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where("status_id", Product::NOT_SALED)
-            ->with(['image', 'user'])
+            ->with(['image', 'user', 'discount'])
             ->get();
 
         return view("welcome", compact("products"));
@@ -27,10 +28,11 @@ class ProductController extends Controller
     public function productDetail($product_id)
     {
         $product = Product::query()->where("id", $product_id)
-            ->with(['image', 'user'])
+            ->with(['image', 'user', 'discount'])
             ->first();
+        $regions = Region::all();
         if (!empty($product) and $product){
-            return view("product_single", compact("product"));
+            return view("product_single", compact("product", 'regions'));
         }else {
             return redirect(url("/"));
         }

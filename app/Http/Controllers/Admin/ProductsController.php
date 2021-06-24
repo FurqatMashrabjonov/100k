@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\Discount;
 use App\Models\Image;
 use App\Models\Product;
 use http\Env\Response;
@@ -19,7 +20,7 @@ class ProductsController
      */
     public function index()
     {
-        $products = Product::query()->with(['status', 'type', 'image'])->get();
+        $products = Product::query()->with(['status', 'type', 'image', 'discount'])->get();
         return view('admin.products', compact('products'));
     }
 
@@ -37,7 +38,7 @@ class ProductsController
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -47,7 +48,8 @@ class ProductsController
             'type_id' => ['required', 'numeric', 'exists:types,id'],
             'price' => ['required', 'numeric'],
             'images' => ['required', 'mimes:jpg,jpeg,png'],
-            'count' => ['required', 'numeric']
+            'count' => ['required', 'numeric'],
+            'discount_id' => ['required', 'numeric']
         ]);
 
         $product = new Product();
@@ -59,6 +61,12 @@ class ProductsController
         $product->token = Str::random(40);
         $product->user_id = auth()->user()->getAuthIdentifier();
         $product->like = 0;
+
+        $discount = Discount::find($request->discount_id);
+        if (!empty($discount) and $discount)
+            $product->discount_id = $request->discount_id;
+        else
+            $product->discount_id = null;
         $product->count = $request->count;
 
         if ($product->save()) {
@@ -83,7 +91,7 @@ class ProductsController
 //            }
 
         }
-        return response()->json($request->all());
+        return redirect("admin/products");
     }
 
     /**
