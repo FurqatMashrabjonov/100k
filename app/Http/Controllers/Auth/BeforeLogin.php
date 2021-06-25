@@ -80,4 +80,10 @@ class BeforeLogin
             return redirect(route("login"));
         }
     }
+
+
+    public function contact(){
+        return view("contact");
+    }
+
 }

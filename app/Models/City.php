@@ -9,4 +9,8 @@ class City extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
 }

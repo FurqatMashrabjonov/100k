@@ -349,7 +349,7 @@
                         <ul>
 
                             <li><a href="{{route("login")}}"> Profil </a></li>
-                            <li><a href="{{url("home")}}"> Aloqa uchun </a></li>
+                            <li><a href="{{url("contact")}}"> Aloqa uchun </a></li>
 
 
                             @if(auth()->check())

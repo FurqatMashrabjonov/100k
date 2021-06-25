@@ -48,10 +48,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
 
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getReferalsAttribute(){
+        return Referal::query()->where("user_id", auth()->user()->getAuthIdentifier())->count();
+    }
+
+    public function getFullAddress(){
+        return "{$this->city_id}, {$this->city->region->name}";
     }
 
 }

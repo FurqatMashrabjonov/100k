@@ -73,7 +73,7 @@
 
 <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
     <h1 class="lg:text-3xl text-xl font-semibold  mb-6"> Log in</h1>
-    <form action="{{route("before_login")}}" method="post">
+    <form action="{{route("before_login")}}" id="login_form" method="post">
         @csrf
         <label for="phone1"> <p class="mb-2 text-black text-lg">Phone </p></label>
         <input type="text" id="phone1" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
@@ -84,7 +84,7 @@
                 <label for="chekcbox1"><span class="checkbox-icon"></span>Remember Me</label>
             </div>
         </div>
-        <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Login</button>
+        <button type="submit" id="login" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Login</button>
         <div class="text-center mt-5 space-x-2">
             <p class="text-base"> Not registered? <a href="{{route("register")}}" class=""> Create a account </a></p>
         </div>
@@ -133,6 +133,14 @@
     <script src="{{asset("assets/js/jquery.mask.js")}}"></script>
     <script>
         $(document).ready(function($){
+
+            document.getElementById("phone1").addEventListener("keydown", e => {
+                if (e.keyCode === 13){
+                    $("#login_form").submit()
+                }
+            })
+
+
             $("#phone1").mask("(99) 000 00 00");
 
             $("#phone1").focusout(function (){

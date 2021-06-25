@@ -18,6 +18,7 @@ class CreateReferalsTable extends Migration
             $table->unsignedInteger("user_id");
             $table->string("product_id");
             $table->string("token");
+            $table->unsignedInteger("view")->default(0);
             $table->timestamps();
         });
     }

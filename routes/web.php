@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\UserItemsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferalController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +43,15 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 
-Route::post("checkout", [CheckoutController::class, 'store'])->name("checkout_create");
+Route::group(['middleware' => 'auth', 'prefix' => 'profile', 'as' => 'profile.'], function(){
+    Route::get('admin', [ProfileController::class, 'getAdminView']);
+    Route::get('favorites', [ProfileController::class, 'getFavoritesView']);
+    Route::get('settings', [ProfileController::class, 'getSettingsView']);
+    Route::get('referals', [ProfileController::class, 'getReferalsView']);
+});
+
+
+Route::post("checkout", [CheckoutController::class, 'store'])->name("checkout.create");
 
 Route::get("product/{product}", [ProductController::class, 'productDetail']);
 Route::post("like", [ProductController::class, 'like'])->name("like");
@@ -71,3 +80,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::get("r/{referal_token}", [ReferalController::class, 'index']);
 
 //-----------------------------------
+
+
+Route::get("contact", function (){
+  return view("contact");
+});

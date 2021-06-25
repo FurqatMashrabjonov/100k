@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div uk-lightbox>
+            <div >
                 <a href="{{pImgUrl($product)}}">
                     <img src="{{pImgUrl($product)}}" alt="">
                 </a>
