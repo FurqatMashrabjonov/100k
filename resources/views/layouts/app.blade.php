@@ -61,7 +61,7 @@
                         <a class="main_menu_items" href="#">
                             <ion-icon name="home-outline"></ion-icon>
                             <span>Bosh sahifa</span></a>
-                        <a class="main_menu_items" href="#">
+                        <a class="main_menu_items" href="{{url("search")}}">
                             <ion-icon name="search-outline"></ion-icon>
                             <span>Qidirish</span></a>
                         <a class="main_menu_items" href="#">

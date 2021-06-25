@@ -10,6 +10,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferalController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -73,6 +74,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 });
 
+
+//Search
+Route::get("search", [SearchController::class, 'getSearchView']);
 
 
 //--------------Referal--------------
