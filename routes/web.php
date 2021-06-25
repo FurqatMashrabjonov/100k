@@ -42,7 +42,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 
-Route::post("checkout", [CheckoutController::class, 'store'])->name("checkout.create");
+Route::post("checkout", [CheckoutController::class, 'store'])->name("checkout_create");
 
 Route::get("product/{product}", [ProductController::class, 'productDetail']);
 Route::post("like", [ProductController::class, 'like'])->name("like");

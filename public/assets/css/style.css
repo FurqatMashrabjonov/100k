@@ -1913,6 +1913,12 @@ header .header_inner .left-side .triger {
   display: none;
   font-size: 19px;
 }
+.sidebar .triger{
+  margin-left: 15px;
+  color: #464646;
+  display: none;
+  font-size: 19px;
+}
 
 header .header_inner .right-side {
   display: -webkit-box;
@@ -2146,6 +2152,9 @@ header .uk-dropdown {
     display: none;
   }
   header .header_inner .left-side .triger {
+    display: block;
+  }
+  .sidebar .triger{
     display: block;
   }
   header .header_inner .left-side .header_search {
@@ -2575,10 +2584,10 @@ header .uk-dropdown {
 }
 
 .main_content {
-  margin-left: 300px;
   background-color: #f0f2f5;
-  width: calc(100% - 300px);
   margin-bottom: 80px;
+  margin-left: 300px;
+  width: calc(100% - 300px);
 }
 
 @media (max-width: 1100px) {

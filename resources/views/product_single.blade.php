@@ -78,7 +78,7 @@
                     <p><strong>Tovarlar soni </strong>: {{$product->count}}</p>
                     <p><strong>Chegirma turi </strong>: {{$product->discount->name}}</p>
                 </div>
-                <form action="{{route("checkout.create")}}" method="post">
+                <form action="{{route("checkout_create")}}" method="post">
                     @csrf
 
                     @if(isset($referal) and $referal)

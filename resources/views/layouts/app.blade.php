@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tailwind.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
+    {{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
 
 </head>
 
@@ -37,7 +37,7 @@
 <div id="wrapper">
 
 
-   @include("components.sidebar")
+    @include("components.sidebar")
 
 
     <div class="main_content">
@@ -58,15 +58,40 @@
                     </div>
 
                     <div class="header_search">
-                        <input type="text" placeholder="Search..">
-                        <div class="icon-search">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                        </div>
+                        <a class="main_menu_items" href="#">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span>Bosh sahifa</span></a>
+                        <a class="main_menu_items" href="#">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <span>Qidirish</span></a>
+                        <a class="main_menu_items" href="#">
+                            <ion-icon name="add-outline"></ion-icon>
+                            <span>Qo'shish</span></a>
+                        <a class="main_menu_items" href="#">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span>Buyurtmalar</span></a>
                     </div>
+
+                    <style>
+                        .header_search ion-icon {
+                            font-size: 22px;
+                            transition: transform 250ms;
+                        }
+
+                        .header_search span {
+                            font-weight: bold;
+                            top: -4px;
+                            position: relative;
+                            padding: 0px 10px 0px 0px;
+                        }
+
+
+                        .main_menu_items:hover ion-icon {
+                            color: #be185d !important;
+                            transition-duration: .2s;
+                        }
+
+                    </style>
 
                 </div>
                 <div class="right-side lg:pr-4">
@@ -75,7 +100,7 @@
                        class="bg-pink-500 flex font-bold hidden hover:bg-pink-600 hover:text-white inline-block items-center lg:block max-h-10 mr-4 px-4 py-2 rounded shado text-white">
                         <ion-icon name="add-circle" class="-mb-1
                              mr-1 opacity-90 text-xl uilus-circle"></ion-icon>
-                        Upload
+                        Do'kon
                     </a>
                     <!-- upload dropdown box -->
                     <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -92,11 +117,11 @@
                             <div class="flex flex-col choose-upload text-center">
 
                                 <div
-                                    class="bg-gray-100 border-2 border-dashed flex flex-col h-24 items-center justify-center relative w-full rounded-lg dark:bg-gray-800 dark:border-gray-600">
+                                        class="bg-gray-100 border-2 border-dashed flex flex-col h-24 items-center justify-center relative w-full rounded-lg dark:bg-gray-800 dark:border-gray-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                          class="w-12">
                                         <path
-                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"/>
+                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"/>
                                         <path d="M9 13h2v5a1 1 0 11-2 0v-5z"/>
                                     </svg>
                                 </div>
@@ -116,7 +141,7 @@
 
                             <div class="uk-flex uk-flex-column choose-upload" hidden>
                                 <div
-                                    class="mx-auto flex flex-col h-24 items-center justify-center relative w-full rounded-lg">
+                                        class="mx-auto flex flex-col h-24 items-center justify-center relative w-full rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                          class="w-12">
                                         <path fill-rule="evenodd"
@@ -144,7 +169,7 @@
 
                         </div>
                         <div
-                            class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm dark:border-gray-500 dark:text-gray-500">
+                                class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm dark:border-gray-500 dark:text-gray-500">
                             Your Video size Must be Maxmium 999MB
                         </div>
                     </div>
@@ -160,7 +185,7 @@
                     </a>
                     <div uk-drop="mode: click;offset: 4" class="header_dropdown">
                         <h4
-                            class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">
+                                class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">
                             Notification </h4>
                         <ul class="dropdown_scrollbar" data-simplebar>
                             <li>
@@ -242,7 +267,7 @@
                     </a>
                     <div uk-drop="mode: click;offset: 4" class="header_dropdown">
                         <h4
-                            class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">
+                                class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">
                             Messages </h4>
                         <ul class="dropdown_scrollbar" data-simplebar>
                             <li>
@@ -323,20 +348,20 @@
                     <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                         <ul>
 
-                            @guest
-                                @if (Route::has('login'))
-                                    <li><a href="{{route("login")}}"> Profil </a></li>
-                                @endif
+                            <li><a href="{{route("login")}}"> Profil </a></li>
+                            <li><a href="{{url("home")}}"> Aloqa uchun </a></li>
 
-                            @else
-                                <li><a href="{{url("home")}}"> Profil </a></li>
-                            @endguest
-
-                            <li><a href="#"> Payments </a></li>
-                            <li><a href="#"> Help </a></li>
 
                             @if(auth()->check())
-                                    <li><a href="#" onclick="logout()"> Logout </a></li>
+                                <li><a href="{{url("profile/admin")}}"> Adminlar uchun </a></li>
+                                <li><a href="{{url("profile/favorites")}}"> Sevimlilarim </a></li>
+                                <li><a href="{{url('profile/settings')}}"> Sozlamalar </a></li>
+                            @endif
+
+
+
+                            @if(auth()->check())
+                                <li><a href="#" onclick="logout()"> Chiqish </a></li>
                                 <form style="display: none" id="logout" action="{{route('logout')}}" method="post">
                                     @csrf
                                     <input style="cursor: pointer;" type="submit" value="Log out">
@@ -362,8 +387,8 @@
 <div id="story-modal" class="uk-modal-container" uk-modal>
     <div class="uk-modal-dialog story-modal">
         <button
-            class="uk-modal-close-default lg:-mt-9 lg:-mr-9 -mt-5 -mr-5 shadow-lg bg-white rounded-full p-4 transition dark:bg-gray-600 dark:text-white"
-            type="button" uk-close></button>
+                class="uk-modal-close-default lg:-mt-9 lg:-mr-9 -mt-5 -mr-5 shadow-lg bg-white rounded-full p-4 transition dark:bg-gray-600 dark:text-white"
+                type="button" uk-close></button>
 
         <div class="story-modal-media">
             <img src="assets/images/post/img4.jpg" alt="" class="inset-0 h-full w-full object-cover">
@@ -455,7 +480,7 @@
 
 <script>
 
-    function logout(){
+    function logout() {
         $("#logout").submit()
     }
 
@@ -505,7 +530,8 @@
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="{{asset("assets/js/jquery.mask.js")}}"></script>
 
-<script src="../../unpkg.com/ionicons%405.2.3/dist/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"
+        data-stencil-namespace="ionicons"></script>
 @yield("scripts")
 </body>
 
